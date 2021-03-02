@@ -1,2 +1,2 @@
 # i3-violet-rice
-i3 Violet Rice Dots
+Violet i3 Ricing Dots (ViRD) 
