@@ -12,9 +12,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-GDK_BACKEND=wayland
-CLUTTER_BACKEND=wayland
-
 # Plugins
 plugins=(git sudo systemd zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
 

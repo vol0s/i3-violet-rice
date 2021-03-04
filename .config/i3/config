@@ -1,24 +1,18 @@
 # Variables
 
 set $mod Mod4
-# set $lock swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 5 --fade-in 0.2 --show-failed-attempts -K
-# set $lock i3lock-fancy
+set $lock i3lock-fancy
 set $power ~/.config/rofi/modi/power
 set $wifi kitty nmtui
 set $bt blueman-manager
 set $term kitty
-
-#set $menu rofi -m $(expr $(swaymsg -t get_tree | jq '.nodes | map([recurse(.nodes[]?, .floating_nodes[]?) | .focused] | any) | index(true)') - 1) -show drun -run-command 'swaymsg exec -- {cmd}'
-#set $menu rofi -m $(swaymsg -t get_outputs | jq 'map(select(.active) | .focused) | index(true)') -show drun -run-command 'swaymsg exec -- {cmd}'
 set $menu rofi -show drun
-# set $menu dmenu_path | wofi --show drun -iI | xargs swaymsg exec --
-# set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%d-%m-%Y-%H-%M-%S").png
-# set $screenclip slurp | grim -g - ~/Pictures/screenshots/scrn-$(date +"%d-%m-%Y-%H-%M-%S").png
+set $screenshot scrot ~/Pictures/screenshots/scrn-$(date +"%d-%m-%Y-%H-%M-%S").png
 set $background ~/.images/AbstractViolet.png
 
 ##9e00dc
 
-set $cl_high #8d00c1
+set $cl_high #580088
 set $cl_indi #d9d8d8
 set $cl_back #231f20
 set $cl_fore #d9d8d8
@@ -40,55 +34,35 @@ set $ws6   6:6
 set $ws7   7:7
 set $ws8   8:8
 set $ws9   9:9
-set $ws0   10:ﰦ
-set $wsF1  11:
-set $wsF2  12:爵
-set $wsF3  13:
-set $wsF4  14:14
-set $wsF5  15:15
-set $wsF6  16:16
-set $wsF7  17:17
-set $wsF8  18:18
-set $wsF9  19:19
-set $wsF10 20:20
-set $wsF11 21:21
-set $wsF12 22:22
+set $ws0   0:0
+set $wsF1  t:
+set $wsF2  e:ﭮ
+set $wsF3  w:
+
 
 # Font
-# font Not Sans 12
+# font Noto Sans 12
 
 # Window borders
-default_border pixel 1
+default_border pixel 2
 default_floating_border normal
 hide_edge_borders smart
 smart_gaps on
 gaps inner 10
 floating_modifier $mod
 
-# Input configuration
-#input * {
-#    xkb_layout es
-#   xkb_variant nodeadkeys
-#    xkb_options caps:swapescape
-#}
-
-# Output configuration
-#output * bg $background fill
-exec --no-startup-id nitrogen --set-auto $background --head=0 && nitrogen --set-auto $background --head=1
 
 # Default workspaces for common programs
-#assign [app_id="kitty"] $ws1
-#assign [app_id="codium"] $ws2
-#assign [class="^Firefox$"] $ws3
-#assign [class="^Texting$"] $ws4
-#assign [class="^Joplin$"] $ws5
-#assign [class="^Virtualization$"] $ws10
-#assign [class="^Spotify$"] $wsF1
-#assign [class="^Qutebrowser$"] $wsF2
-#assign [class="^Bitwarden$"] $wsF3
+assign [class="kitty"] $ws1
+assign [class="Codium"] $ws2
+assign [class="firefox"] $ws3
+assign [class="Joplin$"] $ws5
+assign [class="^spotify"] $ws8
+assign [class="Discord"] $wsF2
+assign [class="Bitwarden"] $wsF3
 
 # CAJA Settings
-#for_window [app_id="caja"] floating enable
+for_window [class="Caja"] floating enable
 bindsym $mod+k exec caja
 
 # Shortcuts
@@ -107,17 +81,15 @@ bindsym $mod+Escape exec $power
 bindsym $mod+Home exec $bt
 bindsym $mod+End exec $wifi
 
-# Notifications
-bindsym Control+Space exec makoctl dismiss
-bindsym Control+Shift+Space exec makoctl dismiss --all
-
 # Multimedia
-#bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
-#bindsym --locked XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
-#bindsym --locked XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
-#bindsym --locked XF86AudioPlay exec playerctl play-pause
-#bindsym --locked XF86AudioNext exec playerctl next
-#bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+
 
 # Move your focus around
 bindsym $mod+Left focus left
@@ -179,8 +151,11 @@ bindsym $mod+Shift+F10  move container to workspace $wsF10
 bindsym $mod+Shift+F11  move container to workspace $wsF11
 bindsym $mod+Shift+F12  move container to workspace $wsF12
 
-bindsym ctrl+Alt+Right workspace next_on_output
-bindsym ctrl+Alt+Left workspace prev_on_output
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+
+bindsym Control+Mod1+Right workspace next_on_output
+bindsym Control+Mod1+Left workspace prev_on_output
 
 # Layout stuff:
 
@@ -221,7 +196,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $mode_system System: (l) lock, (e) logout, (s) suspend, (r) reboot, (S) shutdown
+set $mode_system (l)ock, (e)xit, (s)uspend, (r)eboot, (S)hutdown
 mode "$mode_system" {
     bindsym l exec $lock, mode "default"
     bindsym e exit
@@ -237,10 +212,26 @@ bindsym $mod+Shift+e mode "$mode_system"
 
 # Autostart
 
+# Notification Daemon
 exec --no-startup-id dunst
-exec_always autotiling
-exec_always  ~/.config/polybar/launch.sh
-exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
-exec --no-startup-id picom
-exec "setxkbmap -layout es"
-exec "setxkbmap -option 'grp:alt_shift_toggle'"
+# Autotiling
+exec --no-startup-id autotiling
+# Output configuration
+exec --no-startup-id xrandr --output HDMI-A-0 --mode 1360x768 --output DisplayPort-0 --mode 1920x1080 --right-of HDMI-A-0
+# Polybar
+exec  --no-startup-id ~/.config/polybar/launch.sh main
+# Background
+exec --no-startup-id nitrogen --set-auto $background --head=0 && nitrogen --set-auto $background --head=1
+# Polkit
+exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+# Language
+exec --no-startup-id setxkbmap es -option "caps:swapescape"
+# Compositor
+exec --no-startup-id picom --experimental-backend
+
+# Autolock
+exec --no-startup-id xautolock -time 15 -locker i3lock-fancy &
+
+# Alt-tab script
+exec_always --no-startup-id python ~/.config/i3/i3-cycle-focus.py --history 2
+bindsym Mod1+Tab exec --no-startup-id python ~/.config/i3/i3-cycle-focus.py --switch
