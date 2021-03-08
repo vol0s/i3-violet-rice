@@ -2,7 +2,7 @@
 
 set $mod Mod4
 set $lock i3lock-fancy
-set $power ~/.config/rofi/modi/power
+set $power ~/.config/polybar/scripts/powermenu.sh
 set $wifi kitty nmtui
 set $bt blueman-manager
 set $term kitty
@@ -57,7 +57,7 @@ assign [class="kitty"] $ws1
 assign [class="Codium"] $ws2
 assign [class="firefox"] $ws3
 assign [class="Joplin$"] $ws5
-assign [class="^spotify"] $ws8
+assign [class="Spotify"] $ws8
 assign [class="Discord"] $wsF2
 assign [class="Bitwarden"] $wsF3
 
@@ -217,7 +217,7 @@ exec --no-startup-id dunst
 # Autotiling
 exec --no-startup-id autotiling
 # Output configuration
-exec --no-startup-id xrandr --output HDMI-A-0 --mode 1360x768 --output DisplayPort-0 --mode 1920x1080 --right-of HDMI-A-0
+exec --no-startup-id ~/.config/i3/autoxrandr.sh
 # Polybar
 exec  --no-startup-id ~/.config/polybar/launch.sh main
 # Background
@@ -228,10 +228,8 @@ exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 exec --no-startup-id setxkbmap es -option "caps:swapescape"
 # Compositor
 exec --no-startup-id picom --experimental-backend
-
 # Autolock
 exec --no-startup-id xautolock -time 15 -locker i3lock-fancy &
-
 # Alt-tab script
 exec_always --no-startup-id python ~/.config/i3/i3-cycle-focus.py --history 2
 bindsym Mod1+Tab exec --no-startup-id python ~/.config/i3/i3-cycle-focus.py --switch
