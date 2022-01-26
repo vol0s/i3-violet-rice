@@ -22,6 +22,7 @@ LANG=es_ES.UTF-8
 XKB_DEFAULT_LAYOUT=es
 VISUAL="nano"
 GTK_THEME=Materia-dark-compact
+TERM=kitty
 
 # Alias
 source ~/.config/zsh/alias.conf

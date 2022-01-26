@@ -6,7 +6,7 @@ set $power ~/.config/polybar/scripts/powermenu.sh
 set $wifi kitty nmtui
 set $bt blueman-manager
 set $term kitty
-set $menu rofi -show drun
+set $menu rofi -modi drun -show drun
 set $screenshot scrot ~/Pictures/screenshots/scrn-$(date +"%d-%m-%Y-%H-%M-%S").png
 set $background ~/.images/AbstractViolet.png
 
@@ -88,8 +88,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sink
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-
-
 
 # Move your focus around
 bindsym $mod+Left focus left

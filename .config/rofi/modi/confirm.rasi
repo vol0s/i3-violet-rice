@@ -1,10 +1,10 @@
 /* Confirm Dialog */
 
-@import "../colors.rasi"
+@theme "../colors"
 
 * {
-    background-color:       @bg;
-    text-color:             @fg;
+    background-color:       @background;
+    text-color:             @foreground;
 	font:				 	"Iosevka Nerd Font 10";
 }
 
@@ -20,5 +20,5 @@ window {
 
 entry {
     expand: 				true;
-    text-color:				@bg2;
+    text-color:				@border;
 }

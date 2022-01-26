@@ -21,7 +21,7 @@ if type "xrandr"; then
     for i in $(seq 1 "$length"); do 
         if [[ $(echo "$res_list" | sed -n "$i"p) == *"1360"* ]]; then
             MONITOR="$(echo "$mon_list" | sed -n "$i"p)" polybar --reload -q main -c "$DIR/smallscreen.ini" &
-        elif [[ $(echo "$res_list" | sed -n "$i"p) == *"1920"* ]]; then
+        elif [[ $(echo "$res_list" | sed -n "$i"p) == *"2560"* ]]; then
             MONITOR="$(echo "$mon_list" | sed -n "$i"p)" polybar --reload -q main -c "$DIR/config.ini" &
         fi
     done
